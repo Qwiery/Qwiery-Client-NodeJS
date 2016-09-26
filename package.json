@@ -1,0 +1,30 @@
+{
+  "name": "qwiery",
+  "version": "1.0.0",
+  "description": "A NodeJS client for Qwiery",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodeunit tests/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Qwiery/Qwiery-Client-NodeJS.git"
+  },
+  "keywords": [
+    "AI",
+    "ML"
+  ],
+  "author": "Orbifold Consulting",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Qwiery/Qwiery-Client-NodeJS/issues"
+  },
+  "homepage": "https://github.com/Qwiery/Qwiery-Client-NodeJS#readme",
+  "dependencies": {
+    "request": "^2.75.0",
+    "request-promise-native": "^1.0.3"
+  },
+  "devDependencies": {
+    "nodeunit": "^0.10.2"
+  }
+}
