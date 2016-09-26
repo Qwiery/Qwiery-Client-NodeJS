@@ -27,7 +27,7 @@ For example, to fetch the sentiments contained in a piece of text use something 
     
 
 --- 
-### Unit tests
+#### Unit tests
 Some of the unit tests require admin privileges on Qwiery and have been commented out. There are plenty of tests which go beyond simple testing of the API methods and should give you insights on how Qwiery can be used and how the semantic network, in particular, can be used together with the bot-like functionality of Qwiery.
 
 To change the Qwiery URL, use
@@ -40,8 +40,13 @@ To use your apiKey
     
 You can obtain a key by registering and the key can be found as shown in the image below
 
-![apikeylocation](https://cloud.githubusercontent.com/assets/2377906/18625281/d6c3585e-7e4d-11e6-98c3-ae903e709356.png)
+![apikeylocation](https://cloud.githubusercontent.com/assets/2377906/18826353/4351898a-83cd-11e6-8f40-066201591935.png)
      
 
 
+---
+#### Support and feedback
 
+ - [Twitter](http://twitter.com/qwiery)
+ - [info@qwiery.com](mailto:info@qwiery.com)
+ - [Github](http://github.com/qwiery)
