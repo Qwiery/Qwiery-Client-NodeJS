@@ -2,7 +2,9 @@
 
 This is a NodeJS module to access, manage and consume the [Qwiery](http://www.qwiery.com) services. It's a wrapper around the various services and makes it easy to integrate natural language understanding services into your apps.
 
-You can also find [a browser client on Github](http://github.com/qwiery) as well as various other utilities and modules.
+You can also find [a browser client on Github](https://github.com/Qwiery/Qwiery-Client-JS) as well as various other utilities and modules.
+
+---
 
 #### Install
 
@@ -32,7 +34,7 @@ Some of the unit tests require admin privileges on Qwiery and have been commente
 
 To change the Qwiery URL, use
 
-    awiery.serviceURL = "http://api.qwiery.com/"
+    qwiery.serviceURL = "http://api.qwiery.com/"
 
 To use your apiKey
 
