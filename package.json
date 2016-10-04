@@ -1,6 +1,6 @@
 {
   "name": "qwiery",
-  "version": "1.0.0",
+  "version": "2016.10.3",
   "description": "A NodeJS client for Qwiery",
   "main": "index.js",
   "scripts": {
@@ -25,6 +25,7 @@
     "request-promise-native": "^1.0.3"
   },
   "devDependencies": {
+    "lodash": "^4.16.3",
     "nodeunit": "^0.10.2"
   }
 }

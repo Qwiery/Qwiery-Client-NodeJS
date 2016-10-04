@@ -6,6 +6,7 @@
 var request = require('request-promise-native');
 var serviceURL = "http://localhost:4785";// "http://api.qwiery.com";
 var timeout = 10000;
+
 module.exports = {
     /***
      * This sets the apiKey across all calls.
@@ -409,6 +410,281 @@ module.exports = {
         };
         return request(opt);
     },
+    // </editor-fold>,
+
+    //<editor-fold desc="Profile">
+    /**
+     * Return the topics of the user.
+     * @returns {}
+     */
+    getTopics: function() {
+        var opt = {
+            url:serviceURL + '/profile/topics/',
+            json: true,
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "GET",
+            timeout: timeout
+        };
+        return request(opt);
+    },
+
+    /**
+     * Return the personalization of the user.
+     * @returns {}
+     */
+    getPersonalization: function() {
+        var opt = {
+            url:serviceURL + '/profile/personalization/get',
+            json: true,
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "GET",
+            timeout: timeout
+        };
+        return request(opt);
+    },
+
+    /**
+     * Clears all the personalization data of the user.
+     * @returns {}
+     */
+    clearAllPersonalization: function() {
+        var opt = {
+            url:serviceURL + '/profile/personalization/clearAll',
+            json: true,
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "GET",
+            timeout: timeout
+        };
+        return request(opt);
+    },
+
+    /**
+     * Clears a specific key of the personalization of the user.
+     * @returns {}
+     */
+    clearPersonalization: function(key) {
+        var opt = {
+            url:serviceURL + '/profile/personalization/clear/' + key,
+            json: true,
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "GET",
+            timeout: timeout
+        };
+        return request(opt);
+    },
+
+    /**
+     * Return the psychological profile of the user.
+     * @returns {}
+     */
+    getPsy: function() {
+        var opt = {
+            url:serviceURL + '/profile/psy/',
+            json: true,
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "GET",
+            timeout: timeout
+        };
+        return request(opt);
+    },
+
+    /***
+     * Returns the default personality names.
+     * @returns {*}
+     */
+    getPersonalities: function() {
+        var opt = {
+            url:serviceURL + '/profile/personalities/',
+            json: true,
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "GET",
+            timeout: timeout
+        };
+        return request(opt);
+    },
+
+    /**
+     * Return the personality profile of the user.
+     * @returns {}
+     */
+    getPersonality: function() {
+        var opt = {
+            url:serviceURL + '/profile/personality/',
+            json: true,
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "GET",
+            timeout: timeout
+        };
+        return request(opt);
+    },
+
+    /**
+     * Return the trail of the user.
+     * @returns {}
+     */
+    getTrail: function() {
+        var opt = {
+            url:serviceURL + '/profile/trail/',
+            json: true,
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "GET",
+            timeout: timeout
+        };
+        return request(opt);
+    },
+
+    /**
+     * Return the name and picture of the user.
+     * @returns {}
+     */
+    getUser: function() {
+        var opt = {
+            url:serviceURL + '/profile/user/',
+            json: true,
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "GET",
+            timeout: timeout
+        };
+        return request(opt);
+    },
+
+    /**
+     * Return the stats of the user.
+     * @returns {}
+     */
+    getStats: function() {
+        var opt = {
+            url:serviceURL + '/profile/stats/',
+            json: true,
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "GET",
+            timeout: timeout
+        };
+        return request(opt);
+    },
+
+    /**
+     * Return the workspaces of the user.
+     * @returns {}
+     */
+    getSpaces: function() {
+        var opt = {
+            url:serviceURL + '/profile/spaces/',
+            json: true,
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "GET",
+            timeout: timeout
+        };
+        return request(opt);
+    },
+
+    /**
+     * Return the history of the user.
+     * @returns {}
+     */
+    getHistory: function(count) {
+        if(this.isUndefined(count)) {
+            count = 500;
+        }
+        var opt = {
+            url:serviceURL + '/profile/history/' + count,
+            json: true,
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "GET",
+            timeout: timeout
+        };
+        return request(opt);
+    },
+
+    /**
+     * Return a history item of the user.
+     * @returns {}
+     */
+    getHistoryItem: function(id) {
+        var opt = {
+            url:serviceURL + '/profile/history/get/' + id,
+            json: true,
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "GET",
+            timeout: timeout
+        };
+        return request(opt);
+    },
+
+    /**
+     * Return how many times a language service was used.
+     * @returns {}
+     */
+    getLanguageUsageCount: function(id) {
+        var opt = {
+            url:serviceURL + '/profile/languageusage/',
+            json: true,
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "GET",
+            timeout: timeout
+        };
+        return request(opt);
+    },
+    /**
+     * Return how many times the user posted a question.
+     * @returns {}
+     */
+    getQuestionUsageCount: function(id) {
+        var opt = {
+            url:serviceURL + '/profile/questionusage/',
+            json: true,
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "GET",
+            timeout: timeout
+        };
+        return request(opt);
+    },
+    //</editor-fold>
+
+    // <editor-fold desc="Security and Identity">
+    getContextFromApiKey: function(apiKey) {
+
+        var opt = {
+            url: serviceURL + '/authentication/getContextFromApiKey/' + apiKey,
+            headers: {
+                "apiKey": this.apiKey
+            },
+            json: true,
+            method: "GET",
+            timeout: timeout
+        };
+        return request(opt);
+    },
     // </editor-fold>
 
     // <editor-fold desc="Utils">
@@ -468,7 +744,7 @@ module.exports = {
      * @returns {boolean}
      */
     isUndefined: function(obj) {
-        return !Qwiery.isDefined(obj);
+        return !this.isDefined(obj);
     },
 
     /**
