@@ -14,7 +14,6 @@ module.exports = {
      */
     apiKey: "Anonymous",
 
-
     // <editor-fold desc="Lexic"> 
     /***
      * Asks Qwiery a question.
@@ -164,6 +163,7 @@ module.exports = {
     // </editor-fold> 
 
     //<editor-fold desc="Graph">
+
     /**
      * Updates the given entity.
      * @param {JSON} data An entity in JSON format.
@@ -287,7 +287,7 @@ module.exports = {
     linkEntities: function(fromId, toId, title) {
         var opt = {
             url: serviceURL + '/graph/link/',
-            data: {fromId: fromId, toId: toId, title: title || ''},
+            json: {fromId: fromId, toId: toId, title: title || ''},
 
             headers: {
                 "apiKey": this.apiKey
@@ -317,7 +317,7 @@ module.exports = {
     unlinkEntities: function(fromId, toId, title) {
         var opt = {
             url: serviceURL + '/graph/unlink/',
-            data: {fromId: fromId, toId: toId, title: title},
+            json: {fromId: fromId, toId: toId, title: title},
 
             headers: {
                 "apiKey": this.apiKey
@@ -346,7 +346,7 @@ module.exports = {
     getRelated: function(id) {
         var opt = {
             url: serviceURL + '/graph/entity/related/',
-            data: {id: id},
+            json: {id: id},
 
             headers: {
                 "apiKey": this.apiKey
@@ -393,6 +393,7 @@ module.exports = {
     //</editor-fold>
 
     // <editor-fold desc="Language">
+
     /**
      * Fetches the sentiments contained in the given text.
      * @param text The text to analyze.
@@ -401,16 +402,129 @@ module.exports = {
     getSentiment: function(text) {
         var opt = {
             url: serviceURL + '/language/sentiment/',
-            json: {text: text},
             headers: {
                 "apiKey": this.apiKey
             },
             method: "POST",
+            json: {text: text},
             timeout: timeout
         };
         return request(opt);
     },
-    // </editor-fold>,
+
+    /**
+     * Fetches the definition of the first word in the given text.
+     * @param text The text to analyze.
+     * @returns {Promise}
+     */
+    lookup: function(text) {
+        var opt = {
+            url: serviceURL + '/language/lookup/',
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "POST",
+            json: {text: text},
+            timeout: timeout
+        };
+        return request(opt);
+    },
+
+    parseText: function(text) {
+        var opt = {
+            url: serviceURL + '/language/parse/',
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "POST",
+            json: {text: text},
+            timeout: timeout
+        };
+        return request(opt);
+    },
+
+    randomWords: function(wordType, startsWith, count) {
+        var opt = {
+            url: serviceURL + '/language/randomWords/',
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "POST",
+            json: {
+                options: {
+                    wordType: wordType,
+                    startsWith: startsWith,
+                    count: count
+                }
+            },
+            timeout: timeout
+        };
+        return request(opt);
+    },
+
+    getVerbs: function(count) {
+        var opt = {
+            url: serviceURL + '/language/getVerbs/' + (count || 10),
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "GET",
+            timeout: timeout
+        };
+        return request(opt);
+    },
+
+    getNouns: function(count) {
+        var opt = {
+            url: serviceURL + '/language/getNouns/' + (count || 10),
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "GET",
+            timeout: timeout
+        };
+        return request(opt);
+    },
+
+    getKeywords: function(text) {
+        var opt = {
+            url: serviceURL + '/language/keywords/',
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "POST",
+            json: {text: text},
+            timeout: timeout
+        };
+        return request(opt);
+    },
+
+    detectLanguage: function(text) {
+        var opt = {
+            url: serviceURL + '/language/detect/',
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "POST",
+            json: {text: text},
+            timeout: timeout
+        };
+        return request(opt);
+    },
+
+    getPOS: function(text) {
+        var opt = {
+            url: serviceURL + '/language/pos/',
+            headers: {
+                "apiKey": this.apiKey
+            },
+            method: "POST",
+            json: {text: text},
+            timeout: timeout
+        };
+        return request(opt);
+    },
+    // </editor-fold>
 
     //<editor-fold desc="Profile">
     /**
@@ -419,7 +533,7 @@ module.exports = {
      */
     getTopics: function() {
         var opt = {
-            url:serviceURL + '/profile/topics/',
+            url: serviceURL + '/profile/topics/',
             json: true,
             headers: {
                 "apiKey": this.apiKey
@@ -436,7 +550,7 @@ module.exports = {
      */
     getPersonalization: function() {
         var opt = {
-            url:serviceURL + '/profile/personalization/get',
+            url: serviceURL + '/profile/personalization/get',
             json: true,
             headers: {
                 "apiKey": this.apiKey
@@ -453,7 +567,7 @@ module.exports = {
      */
     clearAllPersonalization: function() {
         var opt = {
-            url:serviceURL + '/profile/personalization/clearAll',
+            url: serviceURL + '/profile/personalization/clearAll',
             json: true,
             headers: {
                 "apiKey": this.apiKey
@@ -470,7 +584,7 @@ module.exports = {
      */
     clearPersonalization: function(key) {
         var opt = {
-            url:serviceURL + '/profile/personalization/clear/' + key,
+            url: serviceURL + '/profile/personalization/clear/' + key,
             json: true,
             headers: {
                 "apiKey": this.apiKey
@@ -487,7 +601,7 @@ module.exports = {
      */
     getPsy: function() {
         var opt = {
-            url:serviceURL + '/profile/psy/',
+            url: serviceURL + '/profile/psy/',
             json: true,
             headers: {
                 "apiKey": this.apiKey
@@ -504,7 +618,7 @@ module.exports = {
      */
     getPersonalities: function() {
         var opt = {
-            url:serviceURL + '/profile/personalities/',
+            url: serviceURL + '/profile/personalities/',
             json: true,
             headers: {
                 "apiKey": this.apiKey
@@ -521,7 +635,7 @@ module.exports = {
      */
     getPersonality: function() {
         var opt = {
-            url:serviceURL + '/profile/personality/',
+            url: serviceURL + '/profile/personality/',
             json: true,
             headers: {
                 "apiKey": this.apiKey
@@ -538,7 +652,7 @@ module.exports = {
      */
     getTrail: function() {
         var opt = {
-            url:serviceURL + '/profile/trail/',
+            url: serviceURL + '/profile/trail/',
             json: true,
             headers: {
                 "apiKey": this.apiKey
@@ -555,7 +669,7 @@ module.exports = {
      */
     getUser: function() {
         var opt = {
-            url:serviceURL + '/profile/user/',
+            url: serviceURL + '/profile/user/',
             json: true,
             headers: {
                 "apiKey": this.apiKey
@@ -572,7 +686,7 @@ module.exports = {
      */
     getStats: function() {
         var opt = {
-            url:serviceURL + '/profile/stats/',
+            url: serviceURL + '/profile/stats/',
             json: true,
             headers: {
                 "apiKey": this.apiKey
@@ -589,7 +703,7 @@ module.exports = {
      */
     getSpaces: function() {
         var opt = {
-            url:serviceURL + '/profile/spaces/',
+            url: serviceURL + '/profile/spaces/',
             json: true,
             headers: {
                 "apiKey": this.apiKey
@@ -609,7 +723,7 @@ module.exports = {
             count = 500;
         }
         var opt = {
-            url:serviceURL + '/profile/history/' + count,
+            url: serviceURL + '/profile/history/' + count,
             json: true,
             headers: {
                 "apiKey": this.apiKey
@@ -626,7 +740,7 @@ module.exports = {
      */
     getHistoryItem: function(id) {
         var opt = {
-            url:serviceURL + '/profile/history/get/' + id,
+            url: serviceURL + '/profile/history/get/' + id,
             json: true,
             headers: {
                 "apiKey": this.apiKey
@@ -643,7 +757,7 @@ module.exports = {
      */
     getLanguageUsageCount: function(id) {
         var opt = {
-            url:serviceURL + '/profile/languageusage/',
+            url: serviceURL + '/profile/languageusage/',
             json: true,
             headers: {
                 "apiKey": this.apiKey
@@ -659,7 +773,7 @@ module.exports = {
      */
     getQuestionUsageCount: function(id) {
         var opt = {
-            url:serviceURL + '/profile/questionusage/',
+            url: serviceURL + '/profile/questionusage/',
             json: true,
             headers: {
                 "apiKey": this.apiKey
@@ -680,6 +794,21 @@ module.exports = {
                 "apiKey": this.apiKey
             },
             json: true,
+            method: "GET",
+            timeout: timeout
+        };
+        return request(opt);
+    },
+    // </editor-fold>
+
+    // <editor-fold desc="Data">
+    getKafka: function() {
+        var opt = {
+            url: serviceURL + '/data/kafka',
+            contentmethod: "application/json;charset=utf-8",
+            headers: {
+                "apiKey": this.apiKey
+            },
             method: "GET",
             timeout: timeout
         };
