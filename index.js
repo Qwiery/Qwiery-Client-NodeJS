@@ -4,7 +4,7 @@
  * Copyright 2016, Qwiery by Orbifold Consulting (http://www.orbifold.net)
  * */
 var request = require('request-promise-native');
-var serviceURL = "http://localhost:4785";// "http://api.qwiery.com";
+var serviceURL = "http://api.qwiery.com";
 var timeout = 10000;
 
 module.exports = {
